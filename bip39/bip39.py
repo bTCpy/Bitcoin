@@ -31,7 +31,7 @@ def get_bip39_word_list():
     return word_list
 
 
-bit_length = 128  #128 bits --> flipping a coin 128 times
+bit_length = 128  #Entropy must be a multiple of 32 bits. Allowed size is 128-256 bits.
 
 
 #Step 1 Generating some Entropy using the generate_entropy function
