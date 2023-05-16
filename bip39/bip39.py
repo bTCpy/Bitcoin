@@ -38,7 +38,7 @@ bit_length = 128  #128 bits --> flipping a coin 128 times
 entropy_bits = generate_entropy(bit_length)
 
 #Step 2 Generate checksum (CS) by hashing with sha256 and calculating cs_length 
-check_sum = create_checksum(entropy)
+check_sum = create_checksum(entropy_bits)
 
 #Step 3 Append CS (bits) to initail entropy (in bits)
 combined_bits = entropy_bits + check_sum
