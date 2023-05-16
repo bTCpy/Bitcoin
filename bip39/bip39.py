@@ -1,7 +1,6 @@
 import os
 import hashlib
 import requests
-from bip39_word_list_eng import bip39_word_list
 
 def generate_entropy(bit_length):
   entropy = os.urandom(bit_length // 8) #Input needs to be in bytes
@@ -22,11 +21,14 @@ def get_bip39_word_list():
   
   if words.status_code == 200:
     text_data = words.text
-    words_list = text_data.splitlines()
-    return words_list
+    word_list = text_data.splitlines()
+    return word_list
   
   else:
-    return bip39_word_list
+    wordlist_path = './wordlist_bip39/bip39_english_wordlist.txt'
+    with open(wordlist_path, 'r') as file:
+        word_list = file.read().splitlines()
+    return word_list
 
 
 bit_length = 128  #128 bits --> flipping a coin 128 times
