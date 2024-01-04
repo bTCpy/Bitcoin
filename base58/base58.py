@@ -33,5 +33,5 @@ extended_public_key = base58encode(bytes.fromhex(serialized) + checksum)
 print(extended_public_key)
 
 if test2 == extended_public_key:
-  print('Base58 encoding worked!)
+  print('Base58 encoding worked!')
 
