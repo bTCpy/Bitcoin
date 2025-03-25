@@ -17,18 +17,25 @@ def create_checksum(entropy):
   return entropy_hash_binary[:checksum_length]
 
 def get_bip39_word_list():
-  words = requests.get("https://raw.githubusercontent.com/bitcoin/bips/master/bip-0039/english.txt")
-  
-  if words.status_code == 200:
-    text_data = words.text
-    word_list = text_data.splitlines()
-    return word_list
-  
-  else:
+  list_check = False
+  try: 
     wordlist_path = './wordlist_bip39/bip39_english_wordlist.txt'
     with open(wordlist_path, 'r') as file:
         word_list = file.read().splitlines()
+        list_check = True
+  except:
+    print("Wordlist was not found")
+
+  if list_check:
     return word_list
+
+  else:
+    words = requests.get("https://raw.githubusercontent.com/bitcoin/bips/master/bip-0039/english.txt")
+  
+    if words.status_code == 200:
+      text_data = words.text
+      word_list = text_data.splitlines()
+      return word_list
 
 
 bit_length = 128  #Entropy must be a multiple of 32 bits. Allowed size is 128-256 bits.
