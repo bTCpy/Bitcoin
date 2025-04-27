@@ -54,10 +54,7 @@ combined_bits = entropy_bits + check_sum
 word_list = get_bip39_word_list()
 
 #Step 5 Get mnemonic by splitting the combined_bits into equal chucks --> convert the chucks into decimals --> use the decimals as an index number in the wordlist 
-mnemonic_sentence = [] #MS = (ENT + CS) / 11
 
-for i in range (0, len(combined_bits), 11):
-  index = int(combined_bits[i:i+11], 2)
-  mnemonic_sentence.append(word_list[index])
+mnemonic_sentence = [word_list[int(combined_bits[i:i+11], 2)] for i in range(0, len(combined_bits), 11)] #MS = (ENT + CS) / 11
 
 print(mnemonic_sentence)
